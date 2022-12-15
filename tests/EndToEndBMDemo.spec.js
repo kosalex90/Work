@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { user } from "./TestData";
 
 test("test", async ({ page }) => {
   await page.goto("https://demo-bloemenmaker.newtribe.nl/");
@@ -20,9 +21,9 @@ test("test", async ({ page }) => {
   await page.getByRole("button", { name: "Add to cart" }).click();
   await page.getByText("Continue to checkout").click();
   await page.getByPlaceholder("First name *").click();
-  await page.getByPlaceholder("First name *").fill("TestName");
+  await page.getByPlaceholder("First name *").fill(user.name);
   await page.getByPlaceholder("First name *").press("Tab");
-  await page.getByPlaceholder("Last name *").fill("LastTestName");
+  await page.getByPlaceholder("Last name *").fill(user.lastname);
   await page.getByPlaceholder("Street *").click();
   await page.getByPlaceholder("Zip code *").click();
   await page.getByPlaceholder("Zip code *").fill("1111AA");
@@ -33,7 +34,7 @@ test("test", async ({ page }) => {
   await page.getByPlaceholder("Special instructions (optional)").click();
   await page
     .getByPlaceholder("Special instructions (optional)")
-    .fill("TESTTEXT");
+    .fill(user.message);
   await page.getByRole("heading", { name: "Delivery date" }).click();
   await page
     .getByRole("button", { name: "Thursday, December 22, 2022" })
@@ -41,7 +42,7 @@ test("test", async ({ page }) => {
   await page.getByText("Confirm").click();
   await page.getByRole("button", { name: "Go to next step" }).click();
   await page.getByPlaceholder("Email *").click();
-  await page.getByPlaceholder("Email *").fill("aqa@nta.io");
+  await page.getByPlaceholder("Email *").fill(user.email);
   await page.getByPlaceholder("First name *").click();
   await page.getByPlaceholder("First name *").fill("TestMyName");
   await page.getByPlaceholder("First name *").press("Tab");
@@ -63,5 +64,4 @@ test("test", async ({ page }) => {
     )
     .click();
   await page.getByRole("listitem").filter({ hasText: "ING" }).click();
-  await page.getByRole("heading", { name: "Purchase € 96.93" }).click();
 });
