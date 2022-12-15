@@ -3,6 +3,7 @@ export const user = {
   lastname: "LastName",
   email: "aqa@nta.io",
   message: "This is test messege!",
+  comanyName: "Company Name Test",
 };
 
 // export const user2 = {
